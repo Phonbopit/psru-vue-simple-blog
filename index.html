@@ -13,8 +13,8 @@
     <section class="hero is-info">
       <div class="hero-body">
         <div class="container">
-          <h1 class="title">{{ title }}</h1>
-          <h2>{{ subtitle }}</h2>
+          <h1 class="title">Title</h1>
+          <h2>Subtitle</h2>
         </div>
       </div>
     </section>
@@ -25,17 +25,17 @@
         <div class="columns">
           <div class="column is-half is-offset-one-quarter">
             <h2 class="title">Create new post</h2>
-            <form id="form" v-on:submit.prevent="addPost">
+            <form id="form">
               <div class="field">
                 <label class="label">Title</label>
                 <p class="control">
-                  <input class="input" type="text" placeholder="Title" v-model="newPost.title">
+                  <input class="input" type="text" placeholder="Title">
                 </p>
               </div>
               <div class="field">
                 <label class="label">Content</label>
                 <p class="control">
-                  <textarea class="textarea" placeholder="Put your content here." v-model="newPost.text"></textarea>
+                  <textarea class="textarea" placeholder="Put your content here."></textarea>
                 </p>
               </div>
               <div class="field">
@@ -56,18 +56,18 @@
         <div class="columns">
           <div class="column is-half is-offset-one-quarter">
             <h2 class="title">Posts</h2>
-            <div class="box" v-for="(post, index) in posts">
+            <div class="box">
               <div class="media-content columns">
                 <div class="column is-10">
-                  <p><strong>{{ post.title }}</strong>
+                  <p><strong>Title</strong>
                   <br>
-                  {{ post.text }}
+                  Content
                   </p>
                   <br>
-                  <span class="date">{{ post.createdAt}}</span>
+                  <span class="date">Date Time</span>
                 </div>
                 <div class="column is-2 is-centered">
-                  <a class="button is-danger is-outlined is-pulled-right" v-on:click="removePost(index)">Delete</a>
+                  <a class="button is-danger is-outlined is-pulled-right">Delete</a>
                 </div>
               </div>
             </div>
@@ -90,8 +90,7 @@
     let vm = new Vue({
       el: '#app',
 
-      data() {
-        return {
+      data: {
           title: 'Vue Blog',
           subtitle: 'Simple Blog Application with Vue.js',
           posts: [],
@@ -99,20 +98,14 @@
             title: '',
             text: ''
           }
-        }
       },
 
       methods: {
         addPost: function() {
-          console.log('post', this.newPost)
-          this.newPost.createdAt = new Date()
-          this.posts.push(Object.assign({}, this.newPost))
 
-          this.newPost.title = ''
-          this.newPost.text = ''
         },
         removePost: function(index) {
-          this.posts.splice(index, 1)
+
         }
       }
     });
